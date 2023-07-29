@@ -156,7 +156,7 @@ int main()
 
     //Den Zusi-Client mit der Ethernet-Schnittstelle starten
     //Der Client läuft in einem eigenen Thread und versucht die Verbindung (wieder)herzustellen
-    zusi->start(&eth, "192.168.178.48", 1436);
+    zusi->start(&eth, "192.168.178.58", 1436);
 
     while (true) {
         //Statusmeldung vom Client abfragen und Leuchtmelder einschalten wenn nicht Online
