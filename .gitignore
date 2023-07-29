@@ -1,0 +1,8 @@
+.build
+.mbed
+projectfiles
+*.py*
+BUILD
+libmax7219
+libzusi
+mbed-os
