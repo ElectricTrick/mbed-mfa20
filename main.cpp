@@ -147,16 +147,22 @@ int main()
     //Blinktakt starten
     blinken.start(blink_takt);
 
+    SocketAddress ip, nm, gw;
+    //Die Ethernetschnittstelle mit statischer IP starten
+    ip.set_ip_address("192.168.10.12");
+    nm.set_ip_address("255.255.255.0");
+    gw.set_ip_address("192.168.10.10");
+    eth.set_network(ip, nm, gw);
     //Die Ethernetschnittstelle mit DHCP starten
     eth.connect();
     //Anzeigen der eigenen IP
-    SocketAddress a;
-    eth.get_ip_address(&a);
-    printf("My IP address: %s\n", a.get_ip_address() ? a.get_ip_address() : "None");
+
+    eth.get_ip_address(&ip);
+    printf("My IP address: %s\n", ip.get_ip_address() ? ip.get_ip_address() : "None");
 
     //Den Zusi-Client mit der Ethernet-Schnittstelle starten
     //Der Client läuft in einem eigenen Thread und versucht die Verbindung (wieder)herzustellen
-    zusi->start(&eth, "192.168.178.58", 1436);
+    zusi->start(&eth, "192.168.10.10", 1436);
 
     while (true) {
         //Statusmeldung vom Client abfragen und Leuchtmelder einschalten wenn nicht Online
